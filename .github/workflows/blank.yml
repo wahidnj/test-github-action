@@ -16,10 +16,10 @@ jobs:
       - name: SSH into server and deploy
         uses: appleboy/ssh-action@master
         with:
-          host: "143.198.72.84"
-          username: "root"
-          password: "aVa2023loc!k"
-          port: "22"
+          host: 143.198.72.84
+          username: root
+          password: aVa2023loc!k
+          port: 22
           script: |
             cd /var/www/html/test-git
             git pull origin main
