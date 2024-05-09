@@ -1,12 +1,25 @@
-on: [push]
+name: Deploy to Ubuntu Server
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-  name: Hello world
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v2
-  - name: Write a multi-line message
-    run: |
-      echo This demo file shows a 
-      echo very basic and easy-to-understand workflow.
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: SSH into server and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: "143.198.72.84"
+          username: "root"
+          password: "aVa2023loc!k"
+          port: "22"
+          script: |
+            cd /var/www/html/test-git
+            git pull origin main
